@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExpenseTypes{% endblock %}
+
+{% block body %}
+    <h1>ExpenseTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ expense_type.id }}</td>
+            </tr>
+            <tr>
+                <th>ExpenseType</th>
+                <td>{{ expense_type.expenseType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('expense_types_index') }}">back to list</a>
+
+    <a href="{{ path('expense_types_edit', {'id': expense_type.id}) }}">edit</a>
+
+    {{ include('expense_types/_delete_form.html.twig') }}
+{% endblock %}

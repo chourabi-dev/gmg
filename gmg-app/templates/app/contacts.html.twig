@@ -1,0 +1,279 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GMG | Contacts{% endblock %}
+
+{% block body %}
+<!--begin::Wrapper-->
+<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+    <!--begin::Header-->
+    {% block header %}
+    {{parent()}}
+    {% endblock %}
+    <!--end::Header-->
+
+    {% block content %}
+    <!--begin::Content-->
+    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+        <div class="subheader py-3 py-lg-8  subheader-transparent " id="kt_subheader">
+            <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Info-->
+                <div class="d-flex align-items-center flex-wrap mr-1">
+
+                    <!--begin::Page Heading-->
+                    <div class="d-flex align-items-baseline flex-wrap mr-5">
+                        <!--begin::Page Title-->
+                        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3">
+
+                        </h2>
+                        <!--end::Page Title-->
+
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+                            {{asprega_breadcrumb()}}
+                        </ul>
+                        <!--end::Breadcrumb-->
+                    </div>
+                    <!--end::Page Heading-->
+                </div>
+                <!--end::Info-->
+
+                <!--begin::Toolbar-->
+                <div class="d-flex align-items-center">
+
+                </div>
+                <!--end::Toolbar-->
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class=" container ">
+                <!--begin::Row-->
+                <div class="row">
+
+                    <!--begin table -->
+
+
+
+                    <!--begin::Entry-->
+                    <div class="d-flex flex-column-fluid">
+                        <!--begin::Container-->
+                        <div class=" container ">
+
+                            <!--begin::Card-->
+                            <div class="card card-custom">
+                                <div class="card-header py-3">
+                                    <div class="card-title">
+                                        <span class="card-icon">
+                                            <i class="fas fa-user-friends text-primary"></i>
+                                        
+                                        </span>
+                                        <h3 class="card-label">Contacts </h3>
+                                    </div>
+                                    <div class="card-toolbar">
+                                        <!--begin::Dropdown-->
+                                        
+                                        <!--end::Dropdown-->
+
+                                        <!--begin::Button -->
+                                        <a href="{{ path('contacts_new',{lng:lngbase}) }}"
+                                                    class="btn btn-primary font-weight-bolder font-size-sm"><i class="fas fa-plus"></i> Add new</a>
+                                        <!--end::Button-->
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <!--begin: Search Form-->
+                                    <!--begin::Search Form-->
+                                    <div class="mt-2 mb-7">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-12 col-xl-12">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="input-icon">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Search..."
+                                                                id="kt_datatable_search_query" />
+                                                            <span><i class="flaticon2-search-1 text-muted"></i></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="d-flex align-items-center">
+                                                            
+                                                            <label class="mr-3 mb-0 d-none d-md-block"><strong>Company:</strong></label>
+                                                            <select class="form-control" id="kt_datatable_search_companies">
+                                                                <option value="">All</option>
+                                                                {% for c in companies %}
+                                                                    <option value="{{c.companyName}}">{{c.companyName}}</option>
+                                                                {% endfor %}
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="mr-3 mb-0 d-none d-md-block"><strong>Title:</strong></label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="title..."
+                                                                id="kt_datatable_search_title" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Search Form-->
+                                    <!--end: Search Form-->
+
+                                    <!--begin: Datatable-->
+                                    <div>
+                                        <table class="datatable datatable-bordered datatable-head-custom "  id="kt_datatable_new_contacts">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Full Name</th>
+                                                    <th>Company</th>
+                                                    <th>Status</th>
+                                                    <th>Note</th>
+                                                    
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+     
+                                                {% for contact in contacts %}
+                                                    <tr>
+                                                        <td>{{loop.index}}</td>
+                                                        <td>
+                                                            <span >
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="symbol symbol-40 flex-shrink-0">
+                                                                        <div class="symbol-label"
+                                                                            style="background-image:url('{{ asset("assets/img/contacts/"~contact.avatar)}}')">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="ml-2">
+                                                                        <div
+                                                                            class="text-dark-75 font-weight-bold line-height-sm">
+                                                                            {{contact.firstname}} 
+                                                                            
+                                                                            <span style="text-transform:uppercase">{{contact.lastname}}</span> <br>
+
+                                                                            {% if contact.companyContacts | length == 1 %}
+                                                                                  
+                                                                                <span class="font-size-sm text-dark-50 text-hover-primary"> {{contact.companyContacts[0].title}} </span>
+                                                                            {% endif %}
+                                                                        
+                                                                        
+                                                                        </div> 
+                                                                            
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+
+                                                        </td>
+                                                        <td>
+                                                            {% if contact.companyContacts | length == 1 %}
+                                                                <ul>
+                                                                    {% for companyContact in contact.companyContacts %}
+                                                                    <li>
+                                                                        {{companyContact.company.companyName}}
+                                                                    </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% else %}
+                                                                <ul>
+                                                                    {% for companyContact in contact.companyContacts %}
+                                                                    <li>
+                                                                        {{companyContact.company.companyName}} <br>
+                                                                        <small class="text-muted">{{companyContact.company.title}}</small>
+                                                                    </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                                
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            {% if contact.isActive == true %} <span class=" text-center label label-light-success label-inline font-weight-bolder mr-1" >Is Active</span>{% endif %}
+                                                            {% if contact.isActive == false %}<span class="text-center  label label-light-danger label-inline font-weight-bolder mr-1" style="color: red;" >Not Active</span>{% endif %}
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            {{contact.privateNotes[ (contact.privateNotes | length) - 1 ].note}}
+                                                        </td>
+                                                        <td>
+                                                            hi
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                {% endfor %}
+                                               
+
+
+                                                
+                                               
+    
+                                           
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!--end datatable-->
+
+                                </div>
+                            </div>
+                            <!--end::Card-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Entry-->
+                    <!-- end table-->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--end::Content-->
+    {% endblock %}
+
+
+    <!--begin::Footer-->
+    {% block footer %}
+    {{parent()}}
+    {% endblock %}
+    <!--end::Footer-->
+</div>
+<!--end::Wrapper-->
+{% endblock %}
+
+{% block javascripts %}
+
+  
+
+    <script src=" {{ asset('/assets/plugins/global/plugins.bundle.js') }} "></script>
+    <script src=" {{ asset('/assets/plugins/custom/prismjs/prismjs.bundle.js') }} "></script>
+    <script src=" {{ asset('/assets/js/scripts.bundle.js') }} "></script>
+    
+    <script src=" {{ asset('/assets/js/contacts.js') }} "></script>
+    <script src=" {{ asset('/assets/js/main.js') }} "></script>
+    
+
+{% endblock %}

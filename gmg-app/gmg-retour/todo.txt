@@ -1,0 +1,88 @@
+0 - add new entitys ( not a config one ): , , emergency contact, bank informations 
+
+
+
+-2 - agaencys config
+-1 - aganegcy is a drop downlist for staff, 
+1 - FK in staff entitys are all drop dosn list
+2 - location staff , first you add the locations, then you make the many to many assoc , using staff_locations
+3 - staff need a location type dropdown list in add
+4 - locations is with (+)
+5 - relationship value from setting
+6 - in bank acount info , FK staff must be null
+7 - while adding the note for the staff, a line must be inserted in table private note, only the staff must have value,.
+     other FK are null, date_add_note = new DateTime(), 
+    fk_subject takes the first in the table subjects ( must be 0 )
+
+8
+- ... (note::lastone , Salary et DaysOff seront cachées)
+
+9 :    + 4th onglet: (Company) Title, Department DROPLIST, Agency DROP LIST, contract type, date start contract, date end contract, salary, daysoffallowance
+
+
+
+
+*************************************************
+
+
+** account **
+ - allowses in one line + delete btn on the right
+
+**********************************************************
+
+1st - 2nd
+4th - title department(drop) agaency (drop) / bank info
+IS AVTIVE => goes in staff
+
+-- add relationship to config tables
+
+
+
+/******************************************************************************************/
+1 - opned tabs , we are trying to remise a zero vers notes
+2 - , condidates -> skill under the name hide the last coma
+
+/*********** compoanies ---------------*/
+
+add -> 
+	tab1: Company
+	logo
+	copany name
+	company types +
+	indistry types +
+	
+
+	
+	tab2 : abcdefgh
+	locations + ( checkbox billings address )	
+	phones + 
+	emails +
+	social medias +
+
+
+	tab3: Bank info
+	bank info entity +
+
+	tab4: Account
+	is active :
+	private note: default subjeect new addedd
+
+	
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

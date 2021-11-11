@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Condidates index{% endblock %}
+
+{% block body %}
+    <h1>Condidates index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Avatar</th>
+                <th>Dob</th>
+                <th>Nationality</th>
+                <th>OtherExperience</th>
+                <th>ApplicationFile</th>
+                <th>IsActive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for condidate in condidates %}
+            <tr>
+                <td>{{ condidate.id }}</td>
+                <td>{{ condidate.firstName }}</td>
+                <td>{{ condidate.lastName }}</td>
+                <td>{{ {{ asset(condidate.avatar) }}</td>
+                <td>{{ condidate.dob }}</td>
+                <td>{{ condidate.nationality }}</td>
+                <td>{{ condidate.otherExperience }}</td>
+                <td>{{ condidate.applicationFile }}</td>
+                <td>{{ condidate.isActive ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('condidates_show', {'id': condidate.id}) }}">show</a>
+                    <a href="{{ path('condidates_edit', {'id': condidate.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('condidates_new') }}">Create new</a>
+{% endblock %}

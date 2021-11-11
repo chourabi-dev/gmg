@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AllowanceTypes{% endblock %}
+
+{% block body %}
+    <h1>AllowanceTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ allowance_type.id }}</td>
+            </tr>
+            <tr>
+                <th>AllowanceType</th>
+                <td>{{ allowance_type.allowanceType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('allowance_types_index') }}">back to list</a>
+
+    <a href="{{ path('allowance_types_edit', {'id': allowance_type.id}) }}">edit</a>
+
+    {{ include('allowance_types/_delete_form.html.twig') }}
+{% endblock %}

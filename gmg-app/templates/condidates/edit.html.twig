@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Condidates{% endblock %}
+
+{% block body %}
+    <h1>Edit Condidates</h1>
+
+    {{ include('condidates/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('condidates_index') }}">back to list</a>
+
+    {{ include('condidates/_delete_form.html.twig') }}
+{% endblock %}

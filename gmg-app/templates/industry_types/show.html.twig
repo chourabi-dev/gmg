@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}IndustryTypes{% endblock %}
+
+{% block body %}
+    <h1>IndustryTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ industry_type.id }}</td>
+            </tr>
+            <tr>
+                <th>IndustryType</th>
+                <td>{{ industry_type.industryType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('industry_types_index') }}">back to list</a>
+
+    <a href="{{ path('industry_types_edit', {'id': industry_type.id}) }}">edit</a>
+
+    {{ include('industry_types/_delete_form.html.twig') }}
+{% endblock %}

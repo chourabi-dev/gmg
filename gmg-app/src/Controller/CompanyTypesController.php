@@ -1,0 +1,187 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\CompanyTypes;
+use App\Form\CompanyTypesType;
+use App\Form\CompanyTypesTypeEdit;
+use App\Repository\CompanyTypesRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use AndreaSprega\Bundle\BreadcrumbBundle\Annotation\Breadcrumb;
+
+class CompanyTypesController extends AbstractController
+{
+
+    private function lanChooser($lng){
+        $tmp = strtolower($lng);
+        switch ($tmp) {
+            case 'en':
+                return 'en_EN';
+                break;
+            case 'fr':
+                return 'fr_FR';
+                break;
+            case 'ge':
+                return 'ge_GE';
+                break;   
+            case 'ar':
+                return 'ar_AR';
+                break;            
+            
+            default:
+                return 'en_EN';
+                break;
+        }
+    }
+
+    /**
+      * @Route("/{lng}/config/company_types", defaults={"lng"="EN"},  name="company_types_index", methods={"GET"})
+      * @Breadcrumb({
+      *   { "label" = "Home", "route" = "index_route" },
+      *   { "label" = "Config", "route" = "config_route" },
+      *   { "label" = "Company Types",},
+      
+      * })
+     */
+    public function index(CompanyTypesRepository $companyTypesRepository,$lng): Response
+    {
+        return $this->render('company_types/index.html.twig', [
+            'company_types' => $companyTypesRepository->findAll(),
+            'lng' => $this->lanChooser($lng),
+            'lngbase' => $lng,
+        ]);
+    }
+
+    /**
+     * @Route("/{lng}/company_types/new", name="company_types_new", methods={"GET","POST"})
+      * @Breadcrumb({
+      *   { "label" = "Home", "route" = "index_route" },
+      *   { "label" = "Config", "route" = "config_route" },
+      *   { "label" = "Company types", "route" = "company_types_index"},
+      *   { "label" = "New"},
+      
+      
+      * })
+     */
+    public function new(Request $request,$lng): Response
+    {
+        $companyType = new CompanyTypes();
+        $form = $this->createForm(CompanyTypesType::class, $companyType);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($companyType);
+            $entityManager->flush();
+
+            
+
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+            ? 'task_new'
+            : 'task_success';
+
+            if ($nextAction == 'task_new') {
+                 return $this->redirectToRoute('company_types_new',['lng' => $lng,]);
+            } else {
+                return $this->redirectToRoute('company_types_index',['lng' => $lng,]);
+            }
+            
+        }else{
+
+            $errors = $form->getErrors(true);
+
+            $form->clearErrors(true);
+
+            return $this->render('company_types/new.html.twig', [
+                'company_type' => $companyType,
+                'form' => $form->createView(),
+                'lng' => $this->lanChooser($lng),
+                'lngbase' => $lng,
+                'errors' => $errors
+            ]); 
+        }
+
+        return $this->render('company_types/new.html.twig', [
+            'company_type' => $companyType,
+            'form' => $form->createView(),
+            'lng' => $this->lanChooser($lng),
+            'lngbase' => $lng,
+            'errors' => array()
+            
+        ]);
+    }
+
+
+
+
+
+    /**
+     * @Route("/{lng}/config/company_types/show/{id}", name="company_types_show", methods={"GET"})
+     * 
+     */
+    public function show(CompanyTypes $companyType,$id,$lng): Response
+    {
+        return $this->render('company_types/show.html.twig', [
+            'company_type' => $companyType,
+            'lng' => $this->lanChooser($lng),
+            'lngbase' => $lng,
+        ]);
+    }
+
+
+    /**
+     * @Route("/{lng}/config/company_types/edit/{id}", name="company_types_edit", methods={"GET","POST"})
+      * @Breadcrumb({
+      *   { "label" = "Home", "route" = "index_route" },
+      *   { "label" = "Config", "route" = "config_route" },
+      *   { "label" = "Company types", "route" = "company_types_index"},
+      *   { "label" = "Edit"},
+      
+      
+      * })
+     */
+    public function edit(Request $request, CompanyTypes $companyType,$id,$lng): Response
+    {
+        $form = $this->createForm(CompanyTypesTypeEdit::class, $companyType);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('company_types_index',['lng' => $lng,]);
+        }else {
+
+            $errors = $form->getErrors(true);
+
+            $form->clearErrors(true);
+
+            return $this->render('company_types/new.html.twig', [
+                'company_type' => $companyType,
+                'form' => $form->createView(),
+                'lng' => $this->lanChooser($lng),
+                'lngbase' => $lng,
+                'errors' => $errors
+            ]); 
+        }
+
+
+    }
+
+    /**
+     * @Route("/{lng}/config/company_types/delete/{id}", name="company_types_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, CompanyTypes $companyType,$id,$lng): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$companyType->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($companyType);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('company_types_index',['lng' => $lng,]);
+    }
+}

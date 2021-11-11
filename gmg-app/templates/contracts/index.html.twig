@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contracts index{% endblock %}
+
+{% block body %}
+    <h1>Contracts index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ContractPdf</th>
+                <th>DateStartContract</th>
+                <th>DateEndContract</th>
+                <th>Salary</th>
+                <th>Periodicity</th>
+                <th>DaysOff</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contract in contracts %}
+            <tr>
+                <td>{{ contract.id }}</td>
+                <td>{{ contract.contractPdf }}</td>
+                <td>{{ contract.DateStartContract ? contract.DateStartContract|date('Y-m-d') : '' }}</td>
+                <td>{{ contract.DateEndContract ? contract.DateEndContract|date('Y-m-d') : '' }}</td>
+                <td>{{ contract.salary }}</td>
+                <td>{{ contract.periodicity }}</td>
+                <td>{{ contract.daysOff }}</td>
+                <td>
+                    <a href="{{ path('contracts_show', {'id': contract.id}) }}">show</a>
+                    <a href="{{ path('contracts_edit', {'id': contract.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('contracts_new') }}">Create new</a>
+{% endblock %}

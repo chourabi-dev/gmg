@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GMG{% endblock %}
+
+{% block body %}
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                <!--begin::Header-->
+                {% block header %}
+                    {{parent()}}
+                {% endblock %}
+                <!--end::Header-->
+
+                {% block content %}
+                <!--begin::Content-->
+                <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+                    home page
+                    
+                </div>
+                <!--end::Content-->
+                {% endblock %}
+                
+
+                <!--begin::Footer-->
+                {% block footer %}
+                {{parent()}}
+                {% endblock %}
+                <!--end::Footer-->
+            </div>
+            <!--end::Wrapper-->
+{% endblock %}

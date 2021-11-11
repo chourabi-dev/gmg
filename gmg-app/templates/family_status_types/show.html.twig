@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FamilyStatusTypes{% endblock %}
+
+{% block body %}
+    <h1>FamilyStatusTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ family_status_type.id }}</td>
+            </tr>
+            <tr>
+                <th>FamilyStatusType</th>
+                <td>{{ family_status_type.familyStatusType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('family_status_types_index') }}">back to list</a>
+
+    <a href="{{ path('family_status_types_edit', {'id': family_status_type.id}) }}">edit</a>
+
+    {{ include('family_status_types/_delete_form.html.twig') }}
+{% endblock %}

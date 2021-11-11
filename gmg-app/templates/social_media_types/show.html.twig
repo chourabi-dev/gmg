@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SocialMediaTypes{% endblock %}
+
+{% block body %}
+    <h1>SocialMediaTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ social_media_type.id }}</td>
+            </tr>
+            <tr>
+                <th>SocialMediaType</th>
+                <td>{{ social_media_type.socialMediaType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('social_media_types_index') }}">back to list</a>
+
+    <a href="{{ path('social_media_types_edit', {'id': social_media_type.id}) }}">edit</a>
+
+    {{ include('social_media_types/_delete_form.html.twig') }}
+{% endblock %}

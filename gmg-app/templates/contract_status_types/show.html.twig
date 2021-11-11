@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ContractStatusTypes{% endblock %}
+
+{% block body %}
+    <h1>ContractStatusTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contract_status_type.id }}</td>
+            </tr>
+            <tr>
+                <th>ContractStatusType</th>
+                <td>{{ contract_status_type.contractStatusType }}</td>
+            </tr>
+            <tr>
+                <th>Ordre</th>
+                <td>{{ contract_status_type.ordre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('contract_status_types_index') }}">back to list</a>
+
+    <a href="{{ path('contract_status_types_edit', {'id': contract_status_type.id}) }}">edit</a>
+
+    {{ include('contract_status_types/_delete_form.html.twig') }}
+{% endblock %}

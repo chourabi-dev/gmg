@@ -1,0 +1,155 @@
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}GMG | Edit Contract Status Type {% endblock %}
+
+{% block body %}
+<!--begin::Wrapper-->
+<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+    <!--begin::Header-->
+    {% block header %}
+    {{parent()}}
+    {% endblock %}
+    <!--end::Header-->
+
+    {% block content %}
+    <!--begin::Content-->
+    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+
+        <div class="subheader py-3 py-lg-8  subheader-transparent " id="kt_subheader">
+            <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Info-->
+                <div class="d-flex align-items-center flex-wrap mr-1">
+
+                    <!--begin::Page Heading-->
+                    <div class="d-flex align-items-baseline flex-wrap mr-5">
+                        <!--begin::Page Title-->
+                        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3">
+                            
+                        </h2>
+                        <!--end::Page Title-->
+
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+                            {{asprega_breadcrumb()}}
+                        </ul>
+                        <!--end::Breadcrumb-->
+                    </div>
+                    <!--end::Page Heading-->
+                </div>
+                <!--end::Info-->
+
+                <!--begin::Toolbar-->
+                <div class="d-flex align-items-center">
+
+                </div>
+                <!--end::Toolbar-->
+            </div>
+        </div>
+
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+
+
+
+
+                    {% if errors|length != 0 %}
+
+                    <div class=" card-custom">
+
+
+                        <div class="">
+
+
+                            <div class="alert alert-custom alert-notice alert-light-warning fade show mb-5"
+                                role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">
+                                    {% for e in errors %}
+                                    <div> {{e.messageTemplate}} </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <!--end::Form-->
+                    </div>
+                    {% endif %}
+
+                    <div class="card card-custom">
+
+
+
+
+                        <div class="card-header border-0 py-5">
+
+
+
+                            <h3 class="card-title align-items-start flex-column">
+
+                                <span class="card-label font-weight-bolder text-dark"><i
+                                        class="fas fa-file-contract text-primary" style="    font-size: 20px;"></i>
+                                        Contract Status Type</span>
+
+                            </h3>
+                            <div class="card-toolbar">
+                                <a href="{{ path('contract_status_types_index',{lng:lngbase}) }}" class="btn btn-secondary"><i
+                                        class="fas fa-arrow-left"></i> Back</a>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="form-group mb-8">
+
+
+
+                            </div>
+                            <!--begin::Form-->
+                            {{ form_start(form) }}
+                                {{ form_widget(form,{'attr': {'class': 'form-group'}}) }}
+
+
+
+                            {{ form_end(form) }}
+
+
+
+
+                        </div>
+                        <!--end::Form-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--end::Content-->
+    {% endblock %}
+
+
+    <!--begin::Footer-->
+    {% block footer %}
+    {{parent()}}
+    {% endblock %}
+    <!--end::Footer-->
+</div>
+<!--end::Wrapper-->
+{% endblock %}

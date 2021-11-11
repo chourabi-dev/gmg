@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Allowances{% endblock %}
+
+{% block body %}
+    <h1>Allowances</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ allowance.id }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ allowance.amount }}</td>
+            </tr>
+            <tr>
+                <th>DueDate</th>
+                <td>{{ allowance.dueDate ? allowance.dueDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Periodicity</th>
+                <td>{{ allowance.periodicity }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ allowance.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('allowances_index') }}">back to list</a>
+
+    <a href="{{ path('allowances_edit', {'id': allowance.id}) }}">edit</a>
+
+    {{ include('allowances/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte maintenant{% endblock %}
+
+{% block body %}
+
+    
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6" style="margin: auto;">
+                <h1 class="h3 mb-3 font-weight-normal">Créer un compte maintenant</h1>
+
+
+                    <div class="my-5">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <div class="form-group my-2">
+                            <button class="btn btn-primary">{{ button_label|default('créer maintenant') }}</button>
+
+                        </div>
+
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {{ form_end(form) }}
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

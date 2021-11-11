@@ -1,0 +1,314 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GMG | Companies{% endblock %}
+
+{% block body %}
+<!--begin::Wrapper-->
+<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+    <!--begin::Header-->
+    {% block header %}
+    {{parent()}}
+    {% endblock %}
+    <!--end::Header-->
+
+    {% block content %}
+    <!--begin::Content-->
+    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+        <div class="subheader py-3 py-lg-8  subheader-transparent " id="kt_subheader">
+            <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Info-->
+                <div class="d-flex align-items-center flex-wrap mr-1">
+
+                    <!--begin::Page Heading-->
+                    <div class="d-flex align-items-baseline flex-wrap mr-5">
+                        <!--begin::Page Title-->
+                        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3">
+
+                        </h2>
+                        <!--end::Page Title-->
+
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+                            {{asprega_breadcrumb()}}
+                        </ul>
+                        <!--end::Breadcrumb-->
+                    </div>
+                    <!--end::Page Heading-->
+                </div>
+                <!--end::Info-->
+
+                <!--begin::Toolbar-->
+                <div class="d-flex align-items-center">
+
+                </div>
+                <!--end::Toolbar-->
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class=" container ">
+                <!--begin::Row-->
+                <div class="row">
+
+                    <!--begin table -->
+
+
+
+                    <!--begin::Entry-->
+                    <div class="d-flex flex-column-fluid">
+                        <!--begin::Container-->
+                        <div class=" container ">
+
+                            <!--begin::Card-->
+                            <div class="card card-custom">
+                                <div class="card-header py-3">
+                                    <div class="card-title">
+                                        <span class="card-icon">
+                                            <i class="fas fa-user-graduate text-primary"></i>
+                                        
+                                        </span>
+                                        <h3 class="card-label">Companies </h3>
+                                    </div>
+                                    <div class="card-toolbar">
+                                        <!--begin::Dropdown-->
+                                        
+                                        <!--end::Dropdown-->
+
+                                        <!--begin::Button -->
+                                        
+                                        <a href="{{ path('companies_new',{lng:lngbase}) }}"
+                                                    class="btn btn-primary font-weight-bolder font-size-sm"><i class="fas fa-plus"></i> Add new</a>
+                                        <!--end::Button-->
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <!--begin: Search Form-->
+                                    <!--begin::Search Form-->
+                                    <div class="mt-2 mb-7">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-12 col-xl-12">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="input-icon">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Search..."
+                                                                id="kt_datatable_search_query" />
+                                                            <span><i class="flaticon2-search-1 text-muted"></i></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="mr-3 mb-0 d-none d-md-block"><strong>Company type:</strong></label>
+                                                            <select class="form-control" id="kt_datatable_search_company_type">
+                                                                <option value="">All</option>
+                                                                {% for d in company_types %}
+                                                                <option value="{{d.companyType}}">
+                                                                    {{d.companyType}}
+                                                                </option>
+                                                                {% endfor %}
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-4 my-2 my-md-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="mr-3 mb-0 d-none d-md-block"><strong>Industry:</strong></label>
+                                                            <select class="form-control" id="kt_datatable_search_industry">
+                                                                <option value="">All</option>
+                                                                {% for d in industry_types %}
+                                                                    <option value="{{d.industryType}}">
+                                                                        {{d.industryType}}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Search Form-->
+                                    <!--end: Search Form-->
+
+                                    <!--begin: Datatable-->
+                                    <div>
+                                        <table class="datatable datatable-bordered datatable-head-custom "  id="kt_datatable_companies">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Company</th>
+                                                    <th>Industry</th>
+                                                    <th>Status</th>
+                                                    <th>Note</th>
+                                                    <th>Actions</th>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for c in companies %}
+
+                                                    <tr>
+                                                        <td>
+                                                            {{loop.index}}
+                                                        </td>
+                                                        <td class="text-dark-75 font-weight-bolder  font-size-lg">
+                                                            <span >
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="symbol symbol-40 flex-shrink-0">
+                                                                        <div class="symbol-label"
+                                                                            style="background-image:url('{{ asset("assets/img/companies/"~c.companyLogo)}}')">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="ml-2">
+                                                                        <div
+                                                                            class="text-dark-75 font-weight-bold line-height-sm">
+                                                                            {{c.companyName}}</div> 
+                                                                            
+                                                                            <a href="#" class="font-size-sm text-dark-50 text-hover-primary">
+                                                                                {{c.companyType}}
+                                                                            </a>
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                        </td>
+
+                                                        <td>
+                                                            {{c.industry}}
+                                                        </td>
+                                                        <td class="text-dark-75 font-weight-bolder  font-size-lg capitalize">
+                                                            {% if c.isActive == true %} <span class=" text-center label label-light-success label-inline font-weight-bolder mr-1" >Is Active</span>{% endif %}
+                                                            {% if c.isActive == false %}<span class="text-center  label label-light-danger label-inline font-weight-bolder mr-1" style="color: red;" >Not Active</span>{% endif %}
+                                                            
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            {{c.privateNotes[ (c.privateNotes | length) - 1 ].note}}
+                                                        </td>
+
+                                                        <td>
+                                                            <span style="overflow: visible; position: relative; width: 125px;" >
+                                                            
+                                                                <a href="{{ path('companies_show',{id: c.id,lng:lngbase}) }}" class="btn btn-sm btn-clean btn-icon ">
+                                                                     <span class="svg-icon svg-icon-md"> 
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                                                    <path d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z" fill="#000000"/>
+                                                                                    <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5"/>
+                                                                                </g>
+                                                                            </svg>
+                                                                        
+                                                                        </span> 
+                                                                </a>
+    
+    
+    
+                                                                    
+                                                                    
+                                                                    <a href="javascript:;"
+                                                                    class="btn btn-sm btn-clean btn-icon" title="Delete"> <span
+                                                                        class="svg-icon svg-icon-md"> <svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                            width="24px" height="24px" viewBox="0 0 24 24"
+                                                                            version="1.1">
+                                                                            <g stroke="none" stroke-width="1" fill="none"
+                                                                                fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                                                <path
+                                                                                    d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                                                    fill="#000000" fill-rule="nonzero"></path>
+                                                                                <path
+                                                                                    d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                                                    fill="#000000" opacity="0.3"></path>
+                                                                            </g>
+                                                                        </svg> </span> 
+                                                                    </a>
+                                                            </span>
+
+                                                        </td>
+
+                                                    </tr>
+                                                {% endfor %}
+
+
+     
+                                               
+
+
+
+
+
+
+                                                
+                                               
+    
+                                           
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!--end datatable-->
+
+                                </div>
+                            </div>
+                            <!--end::Card-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Entry-->
+                    <!-- end table-->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--end::Content-->
+    {% endblock %}
+
+
+    <!--begin::Footer-->
+    {% block footer %}
+    {{parent()}}
+    {% endblock %}
+    <!--end::Footer-->
+</div>
+<!--end::Wrapper-->
+{% endblock %}
+
+{% block javascripts %}
+
+  
+
+    <script src=" {{ asset('/assets/plugins/global/plugins.bundle.js') }} "></script>
+    <script src=" {{ asset('/assets/plugins/custom/prismjs/prismjs.bundle.js') }} "></script>
+    <script src=" {{ asset('/assets/js/scripts.bundle.js') }} "></script>
+    
+    <script src=" {{ asset('/assets/js/companies.js') }} "></script>
+    <script src=" {{ asset('/assets/js/main.js') }} "></script>
+    
+
+{% endblock %}

@@ -1,0 +1,26 @@
+- modules config
+	* Staff type
+	* Allowance Types
+	* agencies
+	* Contract Types
+	* Relative Types
+	* Countries 
+	* hollidays
+	* departments
+	=> 222 TND
+
+- settings page
+	* All => 100 TND
+/******************************************************/
+- modules config
+	* (27 * 2) add condidate X
+	* Contract Status Types 27 dt
+	
+- condidate
+	* update datatable 10 dt
+	* update language entitys 10 dt
+	* update skills entitys ( years of experience ) 15 dt
+	* add new status contract entity 50dt
+/******************************************************/
+
+

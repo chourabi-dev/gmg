@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EmergencyContacts{% endblock %}
+
+{% block body %}
+    <h1>Create new EmergencyContacts</h1>
+
+    {{ include('emergency_contacts/_form.html.twig') }}
+
+    <a href="{{ path('emergency_contacts_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BankInformations{% endblock %}
+
+{% block body %}
+    <h1>BankInformations</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bank_information.id }}</td>
+            </tr>
+            <tr>
+                <th>BankName</th>
+                <td>{{ bank_information.bankName }}</td>
+            </tr>
+            <tr>
+                <th>BankAddress</th>
+                <td>{{ bank_information.BankAddress }}</td>
+            </tr>
+            <tr>
+                <th>AcountNumber</th>
+                <td>{{ bank_information.acountNumber }}</td>
+            </tr>
+            <tr>
+                <th>BeneficiaryName</th>
+                <td>{{ bank_information.beneficiaryName }}</td>
+            </tr>
+            <tr>
+                <th>Swiftcode</th>
+                <td>{{ bank_information.swiftcode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('bank_informations_index') }}">back to list</a>
+
+    <a href="{{ path('bank_informations_edit', {'id': bank_information.id}) }}">edit</a>
+
+    {{ include('bank_informations/_delete_form.html.twig') }}
+{% endblock %}

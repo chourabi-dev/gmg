@@ -1,0 +1,14 @@
+{
+    "asprega/breadcrumb-bundle": {
+        "version": "0.6.0"
+    },
+    "symfony/mime": {
+        "version": "v5.2.5"
+    },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.22.1"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.0"
+    }
+}

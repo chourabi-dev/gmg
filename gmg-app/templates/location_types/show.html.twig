@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LocationTypes{% endblock %}
+
+{% block body %}
+    <h1>LocationTypes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ location_type.id }}</td>
+            </tr>
+            <tr>
+                <th>LocationType</th>
+                <td>{{ location_type.locationType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('location_types_index') }}">back to list</a>
+
+    <a href="{{ path('location_types_edit', {'id': location_type.id}) }}">edit</a>
+
+    {{ include('location_types/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Allowances index{% endblock %}
+
+{% block body %}
+    <h1>Allowances index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>DueDate</th>
+                <th>Periodicity</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for allowance in allowances %}
+            <tr>
+                <td>{{ allowance.id }}</td>
+                <td>{{ allowance.amount }}</td>
+                <td>{{ allowance.dueDate ? allowance.dueDate|date('Y-m-d') : '' }}</td>
+                <td>{{ allowance.periodicity }}</td>
+                <td>{{ allowance.note }}</td>
+                <td>
+                    <a href="{{ path('allowances_show', {'id': allowance.id}) }}">show</a>
+                    <a href="{{ path('allowances_edit', {'id': allowance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('allowances_new') }}">Create new</a>
+{% endblock %}
